@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment-with-init
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      initContainers:
+      - name: init-script
+        image: busybox:1.28
+        command: ['sh', '-c', 'echo "Waiting for external service to be ready..."; echo "Service is ready!"']
+      containers:
+      - name: main-app-container
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
