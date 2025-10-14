@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readiness-deployment
+  labels:
+    app: readiness-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: readiness-app
+  template:
+    metadata:
+      labels:
+        app: readiness-app
+    spec:
+      containers:
+      - name: readiness-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            port: 80
+          initialDelaySeconds: 15 # Wait 15 seconds before starting liveness checks
+          periodSeconds: 10 # Check every 10 seconds
+          timeoutSeconds: 5 # Timeout after 5 seconds
+          failureThreshold: 3 # Restart container after 3 consecutive failures
+        readinessProbe:
+          httpGet:
+            port: 80
+          initialDelaySeconds: 5 # Wait 5 seconds before starting readiness checks
+          periodSeconds: 5 # Check every 5 seconds
+          timeoutSeconds: 3 # Timeout after 3 seconds
+          failureThreshold: 1 # Mark pod as not ready after 1 failure
