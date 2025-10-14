@@ -21,8 +21,8 @@ spec:
           - containerPort: 80
         resources:
           requests:
-            memory: "20Mi"   # 128 Mebibytes of RAM
-            cpu: "50m"       # 250 millicores (or 0.25 of a CPU core)
+            memory: "10Mi"   # 128 Mebibytes of RAM
+            cpu: "5m"       # 250 millicores (or 0.25 of a CPU core)
           limits:
-            memory: "256Mi"   # 256 Mebibytes of RAM (hard limit)
+            memory: "200Mi"   # 256 Mebibytes of RAM (hard limit)
             cpu: "500m"       # 500 millicores (0.5 of a CPU core - hard limit)
