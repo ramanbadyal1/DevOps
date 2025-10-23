@@ -1,5 +1,5 @@
 pipeline {
-  agent none                       // top-level: no single agent; set per-stage/branch
+  agent none
   options {
     timestamps()
     ansiColor('xterm')

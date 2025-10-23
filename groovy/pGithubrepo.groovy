@@ -11,7 +11,6 @@ pipeline {
     stage('Checkout') {
       steps {
         echo "Cloning repository from ${REPO_URL}..."
-        // This automatically checks out the specified branch
         git branch: "${BRANCH}", url: "${REPO_URL}"
       }
     }
@@ -19,8 +18,6 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          // Example: run build depending on your project type
-          // For Node.js:
           if (fileExists('package.json')) {
             sh 'npm install'
             sh 'npm run build'
@@ -43,7 +40,7 @@ pipeline {
       steps {
         script {
           if (fileExists('package.json')) {
-            sh 'npm test || true'  // continue even if tests fail
+            sh 'npm test || true'
           } else if (fileExists('pom.xml')) {
             sh 'mvn test || true'
           } else {
@@ -74,10 +71,10 @@ pipeline {
 
   post {
     success {
-      echo "✅ Pipeline completed successfully!"
+      echo "Pipeline completed successfully!"
     }
     failure {
-      echo "❌ Pipeline failed. Check logs above."
+      echo "Pipeline failed. Check logs above."
     }
   }
 }
