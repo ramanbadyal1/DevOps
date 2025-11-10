@@ -1,0 +1,15 @@
+# pvc-claim.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: task-pvc-claim
+spec:
+  # The storageClassName must match the PV's storageClassName exactly.
+  storageClassName: manual 
+  accessModes:
+    # The accessModes must also match the PV's accessModes.
+    - ReadWriteOnce 
+  resources:
+    requests:
+      # The requested size must be less than or equal to the PV's capacity (5Gi).
+      storage: 3Gi

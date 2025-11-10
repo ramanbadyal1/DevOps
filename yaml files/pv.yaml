@@ -1,0 +1,19 @@
+# pv-volume.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: task-pv-volume
+  labels:
+    type: local
+spec:
+  # The storage class name helps bind specific PVs to specific PVCs.
+  # 'manual' is a common name used for explicitly managed storage.
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    # ReadWriteOnce means the volume can be mounted as read-write by a single node.
+    - ReadWriteOnce 
+  hostPath:
+    # The directory path on the host node where the data will be stored.
+    path: "/mnt/data" 
