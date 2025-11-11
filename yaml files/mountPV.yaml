@@ -1,15 +1,36 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: my-app-pod
+  name: nginx-deployment-with-pvc
+  labels:
+    app: nginx-data
 spec:
-  containers:
-    - name: my-container
-      image: nginx
-      volumeMounts:
-        - mountPath: "/usr/share/nginx/html" # The path inside the container
-          name: app-storage
-  volumes:
-    - name: app-storage
-      persistentVolumeClaim:
-        claimName: task-pvc-claim # Reference the PVC name here
+  replicas: 3 
+  selector:
+    matchLabels:
+      app: nginx-data
+  template:
+    metadata:
+      labels:
+        app: nginx-data
+    spec:
+      # --- Start Volume Configuration ---
+      volumes:
+        # Define the volume source and link it to the existing PVC name
+        - name: application-persistent-storage
+          persistentVolumeClaim:
+            # Replace 'my-pvc-claim' with the actual name of your PVC
+            claimName: task-pvc-claim 
+      # --- End Volume Configuration ---
+
+      containers:
+      - name: nginx-container
+        image: nginx
+        ports:
+        - containerPort: 80
+        # --- Start Volume Mount Configuration ---
+        volumeMounts:
+          # Name must match the volume name defined above
+          - name: application-persistent-storage
+            # The path inside the container where the volume will be mounted
+            mountPath: "/usr/share/nginx/html"
