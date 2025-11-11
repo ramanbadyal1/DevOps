@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-app-deployment
+  labels:
+    app: springboot-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: springboot-app
+  template:
+    metadata:
+      labels:
+        app: springboot-app # The label for this application's pods
+    spec:
+      containers:
+      - name: springboot-app
+        image: nginx:latest
+        ports:
+        - containerPort: 8080
+      
+      # --- Pod Affinity Rules ---
+      affinity:
+        podAffinity:
+          # This is a REQUIRED rule: if a suitable node cannot be found, the pod remains unscheduled (Pending).
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - data-nodes # Must match the label of the target pods (e.g., Redis pods)
+            # Topology Key is crucial: It defines the scope of "nearness". 
+            # In a multi-AZ setup, this means "on the same node".
+            # You can also use kubernetes.io/hostname if you want them specifically on the exact same physical host.
+            topologyKey: kubernetes.io/hostname 
