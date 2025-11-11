@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-cronjob-minute
+spec:
+  # Cron expression: Runs every minute (e.g., "*/1 * * * *")
+  schedule: "*/1 * * * *"
+  # Optional: Keep history of successful and failed job runs
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            # Uses a simple busybox image to print a message
+            image: busybox:1.36.1
+            args:
+            - /bin/sh
+            - -c
+            - date; echo "Hello, world! This ran at $(date) and will run again soon."
+          restartPolicy: OnFailure # If the job fails, restart the container inside the pod once
+
+      # Ensure the pod only runs until the task is complete, then terminates
+      backoffLimit: 4 
