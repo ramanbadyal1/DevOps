@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: control-plane-admin-pod
+  labels:
+    app: admin-tool
+spec:
+  containers:
+  - name: debug-container
+    # Using a simple image for demonstration
+    image: busybox:1.36.1
+    command: ['sh', '-c', 'echo "Hello from the Control Plane node!"']
+  
+  # --- Tolerations Configuration ---
+  tolerations:
+  - key: "node-role.kubernetes.io/control-plane"
+    operator: "Exists"
+    effect: "NoSchedule"
