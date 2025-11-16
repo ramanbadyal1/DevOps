@@ -1,0 +1,12 @@
+- hosts: all
+  user: ansible
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: Copy a file
+    ansible.builtin.copy:
+      dest: /tmp/ansible_copied_file.txt
+      content: |
+        This is the content of the copied file.
+      owner: ansible
+      group: ansible
