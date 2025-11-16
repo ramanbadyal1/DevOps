@@ -1,0 +1,9 @@
+- hosts: all
+  user: ansible
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: Create a file
+      ansible.builtin.file:
+      path: /tmp/ansible_test_file.txt
+      state: touch
