@@ -1,0 +1,9 @@
+# vars/main.yml
+---
+# Service and Package Variables (for OS compatibility)
+nginx_package_name: nginxsnginx_service_name: nginx
+
+# Site Configuration Variables
+site_name: app_server
+server_port: 80
+root_directory: /var/www/{{ site_name }}
