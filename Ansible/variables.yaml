@@ -3,7 +3,7 @@
   hosts: web
   become: true
   vars_files:
-    - var/main.yml  # Reference the variables file
+    - main.yml  # Reference the variables file
   gather_facts: yes
 
   tasks:
