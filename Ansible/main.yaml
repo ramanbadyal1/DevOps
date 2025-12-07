@@ -1,7 +1,7 @@
 # vars/main.yml
 ---
 # Service and Package Variables (for OS compatibility)
-nginx_package_name: nginxsnginx_service_name: nginx
+nginx_package_name: nginx
 
 # Site Configuration Variables
 site_name: app_server

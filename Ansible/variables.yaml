@@ -3,7 +3,7 @@
   hosts: webservers
   become: true
   vars_files:
-    - vars/main.yml  # Reference the variables file
+    - var/main.yml  # Reference the variables file
   gather_facts: yes
 
   tasks:
@@ -16,32 +16,3 @@
       ansible.builtin.package:
         name: "{{ nginx_package_name }}" # Variable for the package name
         state: present
-    
-    - name: Copy custom Nginx configuration file
-      ansible.builtin.template: # Use the 'template' module to process the J2 file
-        src: "{{ nginx_conf_template }}" # Variable for the template source file
-        dest: /etc/nginx/sites-available/{{ site_name }}.conf
-        owner: root
-        group: root
-        mode: '0644'
-      notify: Restart Nginx
-
-    - name: Create symbolic link to enable the site
-      ansible.builtin.file:
-        src: /etc/nginx/sites-available/{{ site_name }}.conf
-        dest: /etc/nginx/sites-enabled/{{ site_name }}.conf
-        state: link
-        force: true
-      notify: Restart Nginx
-      
-    - name: Ensure Nginx service is running and enabled
-      ansible.builtin.service:
-        name: "{{ nginx_service_name }}" # Variable for the service name
-        state: started
-        enabled: true
-
-  handlers:
-    - name: Restart Nginx
-      ansible.builtin.service:
-        name: "{{ nginx_service_name }}"
-        state: restarted
