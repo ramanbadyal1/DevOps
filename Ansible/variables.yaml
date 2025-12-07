@@ -1,6 +1,6 @@
 ---
 - name: Deploy Nginx with custom configuration
-  hosts: webservers
+  hosts: web
   become: true
   vars_files:
     - var/main.yml  # Reference the variables file
