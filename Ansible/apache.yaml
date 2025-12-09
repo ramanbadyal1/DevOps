@@ -1,0 +1,15 @@
+---
+- hosts: all
+  user: ansible
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: install apache2 package
+      command: apt install apache2 -y
+      when: ansible_os_family == "Debian" # when condition can be used to check many things like OS, variable value etc.
+    - name: start apache2 service
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+      when: ansible_os_family == "Debian"

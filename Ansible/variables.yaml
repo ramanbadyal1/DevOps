@@ -3,7 +3,7 @@
   hosts: web
   become: true
   vars_files:
-    - main.yml  # Reference the variables file
+    - main.yaml  # Reference the variables file
   gather_facts: yes
 
   tasks:
@@ -16,3 +16,9 @@
       ansible.builtin.package:
         name: "{{ nginx_package_name }}" # Variable for the package name
         state: present
+    - name: Start Nginx Service
+      ansible.builtin.service:
+        name: "{{ nginx_service_name }}" # Variable for the service name
+        state: started
+        enabled: yes
+      when: ansible_os_family == "Debian"
