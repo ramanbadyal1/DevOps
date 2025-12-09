@@ -1,0 +1,38 @@
+---
+- name: Wait for web service to become available
+  hosts: all
+  gather_facts: yes
+  become: yes
+  vars:
+    inventory_hostname: 192.168.102.164/32
+
+  tasks:
+    - name: install nginx package
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: yes
+    - name: Start Nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+    - name: Wait for newly installed Nginx service (Port 80 check)
+      ansible.builtin.wait_for:
+        port: 80
+        host: "{{ inventory_hostname }}"
+        timeout: 60
+        delay: 5 # Check every 5 seconds
+        msg: "Web server did not start on port 80 after 60 seconds."
+    - name: wait until a file is created
+      shell: test -f /tmp/myfile.txt
+      register: file_check
+      retries: 5
+      delay: 3
+      until: file_check.rc == 0
+      tags: 
+      - file_check
+      
+    - name: Proceed with deployment after services are ready
+      ansible.builtin.debug:
+        msg: "All required services are up and running. Continuing deployment..."

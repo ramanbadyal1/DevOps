@@ -1,0 +1,22 @@
+- hosts: all
+  user: ansible
+  become: yes
+  gather_facts: yes
+  tasks:  
+    - name: install tree package
+      ansible.builtin.apt:
+        name: tree
+        state: present
+        update_cache: yes
+      tags:
+      - tree
+    - name: Debug tree installation
+      debug:
+        msg: "Tree package installation task executed."
+      tags:
+      - tree
+    - name: install nginx package
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: yes
