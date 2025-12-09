@@ -1,0 +1,26 @@
+---
+- name: Install Nginx and gracefully handle configuration changes
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    # 1. Installation Task
+    - name: Ensure Nginx package is installed
+      ansible.builtin.package:
+        name: nginx
+        state: present
+
+    # 3. Running Task
+    - name: Ensure Nginx service is running and enabled
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+      notify: Restart Nginx
+  # handlers
+  handlers:
+    - name: Restart Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
