@@ -1,0 +1,15 @@
+---
+- hosts: all
+  user: ansible
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - name: execute shell script through file
+      script: /tmp/myscript.sh
+      tags:
+      - shell_script
+    - name: execute inline shell command
+      shell: echo "Hello from Ansible Shell Module" > /tmp/ansible_shell_output.txt
+      tags:
+      - shell_command
