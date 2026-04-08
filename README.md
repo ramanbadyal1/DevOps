@@ -1,4 +1,4 @@
-# DevOps Practice & Automation
+# DevOps & Automation
 
 This repository serves as a centralized hub for my DevOps engineering projects, automation scripts, and infrastructure configurations. It documents my expertise in cloud-native technologies, CI/CD pipelines, and systems administration.
 
