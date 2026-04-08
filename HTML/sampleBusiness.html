@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic Path | Professional Tarot Readings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        h1, h2, .mystic-font { font-family: 'Cinzel', serif; }
+        .card-glow:hover { box-shadow: 0 0 20px rgba(139, 92, 246, 0.5); transform: translateY(-5px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <nav class="p-6 flex justify-between items-center border-b border-slate-800">
+        <div class="text-2xl font-bold tracking-widest text-violet-400 mystic-font">MYSTIC PATH</div>
+        <div class="space-x-6 hidden md:block">
+            <a href="#services" class="hover:text-violet-400">Services</a>
+            <a href="#booking" class="hover:text-violet-400">Book Now</a>
+            <a href="#about" class="hover:text-violet-400">About</a>
+        </div>
+    </nav>
+
+    <header class="py-20 text-center px-4">
+        <h1 class="text-5xl md:text-7xl mb-6 bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">Seek the Truth.</h1>
+        <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-10">Professional, compassionate Tarot readings to help you navigate life's most complex questions. Insight, clarity, and peace of mind await.</p>
+        <a href="#booking" class="bg-violet-600 hover:bg-violet-700 text-white px-8 py-4 rounded-full font-semibold transition uppercase tracking-widest">Schedule Your Reading</a>
+    </header>
+
+    <section id="services" class="py-16 bg-slate-900/50 px-6">
+        <h2 class="text-3xl text-center mb-12 uppercase tracking-widest">Reading Options</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            
+            <div class="p-8 bg-slate-800 rounded-2xl border border-slate-700 card-glow text-center">
+                <div class="text-4xl mb-4">🌙</div>
+                <h3 class="text-xl font-bold mb-2">The Quick Insight</h3>
+                <p class="text-slate-400 mb-6">A focused 15-minute session for single questions.</p>
+                <div class="text-2xl font-bold text-violet-400">$30</div>
+            </div>
+
+            <div class="p-8 bg-slate-800 rounded-2xl border border-violet-500/30 card-glow text-center relative">
+                <span class="absolute top-0 right-0 bg-violet-500 text-xs px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</span>
+                <div class="text-4xl mb-4">✨</div>
+                <h3 class="text-xl font-bold mb-2">The Path Ahead</h3>
+                <p class="text-slate-400 mb-6">A deep 45-minute dive into your current life path.</p>
+                <div class="text-2xl font-bold text-violet-400">$75</div>
+            </div>
+
+            <div class="p-8 bg-slate-800 rounded-2xl border border-slate-700 card-glow text-center">
+                <div class="text-4xl mb-4">🔮</div>
+                <h3 class="text-xl font-bold mb-2">The Full Reveal</h3>
+                <p class="text-slate-400 mb-6">60+ minute intensive session including Celtic Cross.</p>
+                <div class="text-2xl font-bold text-violet-400">$120</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="booking" class="py-20 px-6">
+        <div class="max-w-xl mx-auto bg-slate-800 p-10 rounded-3xl border border-slate-700">
+            <h2 class="text-2xl text-center mb-8 uppercase tracking-widest">Book Your Session</h2>
+            <form id="contactForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Full Name</label>
+                    <input type="text" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 focus:outline-none focus:border-violet-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Email Address</label>
+                    <input type="email" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 focus:outline-none focus:border-violet-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Reading Type</label>
+                    <select class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 focus:outline-none focus:border-violet-500">
+                        <option>The Quick Insight - $30</option>
+                        <option>The Path Ahead - $75</option>
+                        <option>The Full Reveal - $120</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-violet-600 hover:bg-violet-700 p-4 rounded-lg font-bold uppercase tracking-widest transition">Submit Request</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="p-10 border-t border-slate-800 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 Mystic Path Tarot. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Your request has been sent! I will contact you via email shortly to schedule.');
+        });
+    </script>
+</body>
+</html>
