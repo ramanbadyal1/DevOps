@@ -33,7 +33,7 @@ if new_name==name and new_password==password:
 else:
     print(f"your entries were successful")
 
-task2
+#task2
 number = int(input("Please enter your number: "))
 
 if number > 0:
