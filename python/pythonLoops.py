@@ -86,7 +86,7 @@ def deposit(person):
 
 def withdraw(person):
     if person in accounts:
-        amount = input("Enter how much money would you like to withdraw: ")
+        amount = float(input("Enter how much money would you like to withdraw: "))
         if amount > accounts[person]:
             print("you dont seem to have enough money in the account for this withdrawl")
         else:
