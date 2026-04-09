@@ -21,6 +21,7 @@ echo "amount deposited was $amount and new balance is $balance"
 withdrawl() {
 read -p "Enter the amount: " amount
 ((balance=balance-amount))
+clear
 echo "amount deposited was $amount and new balance is $balance"
 }
 exit() {
