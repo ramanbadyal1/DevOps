@@ -2,10 +2,11 @@ FROM node AS builder
 
 WORKDIR /app
 
-COPY . .
+COPY package*.json ./
 
-# installing the dependencies of the react app inside the container.
-RUN npm i
+RUN npm install
+
+COPY . .
 
 # creating the dist folder inside the container and copying the contents of the dist folder from the host to the container.
 RUN npm run build
