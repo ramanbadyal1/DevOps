@@ -8,4 +8,4 @@ RUN npm i
 
 EXPOSE 5173
 
-ENTRYPOINT ["npm", "run", "dev"]
+CMD ["npm", "run", "dev"]
